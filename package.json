@@ -1,0 +1,41 @@
+{
+  "name": "psicare",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.5.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@fullcalendar/core": "^6.1.10",
+    "@fullcalendar/daygrid": "^6.1.10",
+    "@fullcalendar/interaction": "^6.1.10",
+    "@fullcalendar/resource-timeline": "^6.1.10",
+    "@fullcalendar/timegrid": "^6.1.10",
+    "@nextui-org/react": "^1.0.0-beta.12",
+    "@sideway/address": "^5.0.0",
+    "@sideway/formula": "^3.0.1",
+    "@types/node": "18.15.12",
+    "@types/react": "18.0.37",
+    "@types/react-dom": "18.0.11",
+    "axios": "^1.6.8",
+    "cpf-cnpj-validator": "^1.0.3",
+    "email-validator": "^2.0.4",
+    "framer-motion": "^10.12.4",
+    "joi": "^17.11.0",
+    "next": "^13.5.4",
+    "nookies": "^2.5.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.47.0",
+    "react-icons": "^4.8.0",
+    "react-imask": "^6.6.1-alpha.2",
+    "react-responsive": "^9.0.2",
+    "typescript": "5.0.4"
+  }
+}
