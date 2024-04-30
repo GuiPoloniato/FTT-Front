@@ -24,14 +24,14 @@ const Excluir: React.FC<SuccessModalProps> = ({ isOpen, onClose, closeModal, exc
 
   const handleExcluir = async () => {
     try {
-      const { turno, disciplina, endereco, periodo, consultaID} = excluirData;
+      const { turno, disciplina, enderecoCep, periodo, consultaID} = excluirData;
 
       let type = "";
       if (turno) {
         type = "Secretario";
       } else if (disciplina) {
         type = "Professor";
-      } else if (endereco) {
+      } else if (enderecoCep) {
         type = "Paciente";
       } else if (periodo) {
         type = "Aluno";
