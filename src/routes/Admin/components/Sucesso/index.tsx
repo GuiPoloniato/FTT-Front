@@ -21,7 +21,7 @@ const Sucesso: React.FC<SuccessModalProps> = ({ isOpen, onClose, closeModal, men
     <Modal isOpen={isOpen} onClose={handleClose} isCentered size='lg'>
       <ModalOverlay />
       <ModalContent>
-        <ModalBody margin={8}>
+        <ModalBody margin={7}>
           <Box textAlign="center" fontSize="4xl" color="green.500">
             Sucesso!
           </Box>
@@ -29,8 +29,8 @@ const Sucesso: React.FC<SuccessModalProps> = ({ isOpen, onClose, closeModal, men
             {mensagem}
           </Box>
         </ModalBody>
-        <ModalFooter justifyContent="center">
-          <Button colorScheme="green" onClick={handleClose}>
+        <ModalFooter justifyContent="center" marginBottom={6}>
+          <Button colorScheme="green" onClick={handleClose} width={120}>
             Fechar
           </Button>
         </ModalFooter>

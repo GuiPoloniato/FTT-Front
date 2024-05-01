@@ -188,7 +188,7 @@ export default function VisualizarSecretario({
 
                   <Button
                     icon={MdCreate}
-                    mx={2}
+                    mx={7}
                     mt={4}
                     onPress={() => {
                       setIsEditing(true);

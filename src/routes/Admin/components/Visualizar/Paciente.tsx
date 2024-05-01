@@ -443,7 +443,7 @@ export default function VisualizarPaciente({
 
                   <Button
                     icon={MdCreate}
-                    mx={2}
+                    mx={12}
                     mt={4}
                     onPress={() => {
                       setIsEditing(true);

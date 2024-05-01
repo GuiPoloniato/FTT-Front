@@ -125,8 +125,9 @@ export default function CalendarPage() {
       {!isMobile && (
           <ButtonNativo
             icon={MdQueryBuilder}
-            px={6}
+            px={7}
             mt={0.1}
+            mb={5}
             onPress={() => {
               setCadastrarConsultaOpened(true);
             }}

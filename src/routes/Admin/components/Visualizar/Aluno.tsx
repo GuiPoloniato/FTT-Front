@@ -285,7 +285,7 @@ export default function VisualizarAluno({
                   </Text>
                   <Button
                     icon={MdCreate}
-                    mx={2}
+                    mx={3}
                     mt={4}
                     onPress={() => {
                       setIsEditing(true);
