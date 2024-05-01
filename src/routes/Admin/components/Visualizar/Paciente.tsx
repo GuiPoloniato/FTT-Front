@@ -856,6 +856,7 @@ export default function VisualizarPaciente({
                 bg="white"
                 border="2px solid #C30B0B;"
                 color="#C30B0B;"
+                mx={10}
                 _hover={{
                   backgroundColor: "#C30B0B",
                   opacity: 0.9,

@@ -68,7 +68,7 @@ export default function Header({
           }}
         />
       </Flex>
-      {!mobile && <Button mt={0.1} px={6} bg="transparent" label="Sair" onPress={handleSignOut} />}
+      {!mobile && <Button mt={0.1} mx={3} px={6} bg="transparent" label="Sair" onPress={handleSignOut} />}
       {mobile && (
         <Icon
           mt="3"
