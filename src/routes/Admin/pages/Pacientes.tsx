@@ -30,7 +30,7 @@ export default function Pacientes({
 
   async function getUsers(): Promise<ProfessorSignUpData[]> {
     try {
-      const res = await axios.get<ProfessorSignUpData[]>("http://localhost:8080/auth/getPacientes");
+      const res = await axios.get<ProfessorSignUpData[]>("http://localhost:8080/paciente/getPacientes");
       const data = res.data;
       return data;
     } catch (error) {

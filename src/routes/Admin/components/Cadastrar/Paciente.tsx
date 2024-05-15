@@ -51,7 +51,7 @@ export default function CadastrarPaciente({
   useEffect(() => {
     const getAlunos = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/getAlunosSelect');
+        const response = await axios.get('http://localhost:8080/aluno/getAlunosSelect');
         setAlunosOptions(response.data);
       } catch (error) {
         toast({

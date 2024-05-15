@@ -15,7 +15,7 @@ export default function VisualizarUsuário() {
         if (router.isReady) {
         
             if (type === 'secretario') {
-                axios.get(`http://localhost:8080/auth/getSecretarioById/${router.query.id}`)
+                axios.get(`http://localhost:8080/secretario/getSecretarioById/${router.query.id}`)
                     .then((response) => {
                         setSecretario(response.data);
                     })
@@ -23,7 +23,7 @@ export default function VisualizarUsuário() {
                         console.error("Erro ao obter o Secretario:", error);
                     });
             } else if (type === 'aluno') {
-                axios.get(`http://localhost:8080/auth/getAlunoById/${router.query.id}`)
+                axios.get(`http://localhost:8080/aluno/getAlunoById/${router.query.id}`)
                     .then((response) => {
                         setAluno(response.data);
                     })
@@ -31,7 +31,7 @@ export default function VisualizarUsuário() {
                         console.error("Erro ao obter o Aluno:", error);
                     });
             } else if (type === 'professor') {
-                axios.get(`http://localhost:8080/auth/getProfessorById/${router.query.id}`)
+                axios.get(`http://localhost:8080/professor/getProfessorById/${router.query.id}`)
                     .then((response) => {
                         setProfessor(response.data);
                     })
@@ -39,7 +39,7 @@ export default function VisualizarUsuário() {
                         console.error("Erro ao obter o Professor:", error);
                     });
             } else if (type === 'paciente') {
-                axios.get(`http://localhost:8080/auth/getPacienteById/${router.query.id}`)
+                axios.get(`http://localhost:8080/paciente/getPacienteById/${router.query.id}`)
                     .then((response) => {
                         setPaciente(response.data);
                     })

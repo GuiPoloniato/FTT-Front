@@ -63,7 +63,7 @@ export default function VisualizarAluno({
 
   async function getUsers(): Promise<PacienteSignUpData[]> {
     try {
-      const res = await axios.get<PacienteSignUpData[]>(`http://localhost:8080/auth/getPacientesByIdAluno/${router.query.id}`);
+      const res = await axios.get<PacienteSignUpData[]>(`http://localhost:8080/paciente/getPacientesByIdAluno/${router.query.id}`);
       const data = res.data;
       return data;
     } catch (error) {

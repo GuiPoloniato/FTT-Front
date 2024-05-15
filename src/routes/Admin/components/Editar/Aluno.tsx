@@ -109,7 +109,7 @@ export default function EditarAluno({
         professorDisciplina: disciplina,
       };
 
-      await axios.patch(`http://localhost:8080/auth/attAluno/${id}`, dadosAtualizados);
+      await axios.patch(`http://localhost:8080/aluno/attAluno/${id}`, dadosAtualizados);
       onOpen();
     } catch (error) {
       setErro(true);
@@ -119,7 +119,7 @@ export default function EditarAluno({
   useEffect(() => {
     const getProfessores = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/getProfessoresSelect');
+        const response = await axios.get('http://localhost:8080/professor/getProfessoresSelect');
         setProfessoresOptions(response.data);
       } catch (error) {
         console.error(error);

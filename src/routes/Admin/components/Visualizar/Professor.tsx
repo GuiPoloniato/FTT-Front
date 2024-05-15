@@ -59,7 +59,7 @@ export default function VisualizarProfessor({
 
   async function getUsers(): Promise<AlunoSignUpData[]> {
     try {
-      const res = await axios.get<AlunoSignUpData[]>(`http://localhost:8080/auth/getAlunosByIdProfessor/${router.query.id}`);
+      const res = await axios.get<AlunoSignUpData[]>(`http://localhost:8080/aluno/getAlunosByIdProfessor/${router.query.id}`);
       const data = res.data;
       return data;
     } catch (error) {

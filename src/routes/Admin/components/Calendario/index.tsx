@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import { useMediaQuery } from "../../../../utils/useMediaQuery";
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -7,7 +8,7 @@ import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import esLocale from '@fullcalendar/core/locales/es';
 import ptBrLocale from '@fullcalendar/core/locales/pt-br';
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Flex } from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Flex, Text } from '@chakra-ui/react';
 import { MdQueryBuilder } from "react-icons/md";
 import ButtonNativo from '../../../../components/Button';
 import CadastrarConsulta from './Cadastro_Consulta';
@@ -21,6 +22,7 @@ export default function CalendarPage() {
   const [calendarioEventosOpened, setCalendarioEventosOpened] = useState(false);
   const [events, setEvents] = useState([]);
   const isMobile = window.innerWidth <= 768;
+  const { mobile } = useMediaQuery();
 
   function closeModal() {
     setCadastrarConsultaOpened(false);
@@ -39,7 +41,7 @@ export default function CalendarPage() {
 
   const reloadEvents = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/auth/getConsulta');
+      const response = await axios.get('http://localhost:8080/consulta/getConsulta');
       setEvents(response.data);
     } catch (error) {
       console.error('Erro ao buscar consultas:', error);
@@ -49,7 +51,7 @@ export default function CalendarPage() {
   useEffect(() => {
     const fetchConsultas = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/getConsulta');
+        const response = await axios.get('http://localhost:8080/consulta/getConsulta');
         setEvents(response.data);
       } catch (error) {
         console.error('Erro ao buscar consultas:', error);
@@ -108,55 +110,71 @@ export default function CalendarPage() {
   }, [events]);
 
   return (
-    <div className={isMobile ? styles.calendar_container2 : styles.calendar_container}>
-      {isMobile && (
-        <Flex flexDirection='column'>
-          <ButtonNativo
-            icon={MdQueryBuilder}
-            px={6}
-            mt={0.1}
-            onPress={() => {
-              setCadastrarConsultaOpened(true);
-            }}
-            label="Nova consulta"
-          />
-        </Flex>
-      )}
-      {!isMobile && (
-          <ButtonNativo
-            icon={MdQueryBuilder}
-            px={7}
-            mt={0.1}
-            mb={5}
-            onPress={() => {
-              setCadastrarConsultaOpened(true);
-            }}
-            label="Nova consulta"
-          />
-      )}
-      <Modal isOpen={cadastrarConsultaOpened} onClose={closeModal} size="2xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader fontSize="2rem">Cadastrar Consulta</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <CadastrarConsulta closeModal={() => { closeModal(); reloadEvents(); }} />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+    <Flex
+          p="4"
+          style={{
+            marginLeft: mobile ? 0 : 300,
+            marginTop: 80,
+            padding: 20,
+            width: mobile ? "100%" : "calc(100vw - 320px)",
+            backgroundColor: "#FFF",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+      <div className={isMobile ? styles.calendar_container2 : styles.calendar_container}>
+        <Text color="#333" fontSize="2rem" mr="4" mt={-39}>
+          Agenda
+        </Text>
+        {isMobile && (
+          <Flex flexDirection='column'>
+            <ButtonNativo
+              icon={MdQueryBuilder}
+              px={6}
+              mt={0.1}
+              onPress={() => {
+                setCadastrarConsultaOpened(true);
+              }}
+              label="Nova consulta"
+            />
+          </Flex>
+        )}
+        {!isMobile && (
+            <ButtonNativo
+              icon={MdQueryBuilder}
+              px={7}
+              mt={4}
+              mb={5}
+              onPress={() => {
+                setCadastrarConsultaOpened(true);
+              }}
+              label="Nova consulta"
+            />
+        )}
+        <Modal isOpen={cadastrarConsultaOpened} onClose={closeModal} size="2xl">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader fontSize="2rem">Cadastrar Consulta</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <CadastrarConsulta closeModal={() => { closeModal(); reloadEvents(); }} />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
 
-      <Modal isOpen={calendarioEventosOpened} onClose={closeModal} size="2xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader fontSize="2rem">Consulta</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <CalendarioEventos event={selectedEvent} closeModal={closeModal} reloadEvents={reloadEvents} />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+        <Modal isOpen={calendarioEventosOpened} onClose={closeModal} size="2xl">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader fontSize="2rem">Consulta</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <CalendarioEventos event={selectedEvent} closeModal={closeModal} reloadEvents={reloadEvents} />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
 
-      <div ref={calendarEl}></div>
-    </div>
+        <div ref={calendarEl}></div>
+      </div>
+    </Flex>
   );
 }

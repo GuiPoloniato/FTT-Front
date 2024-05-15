@@ -32,7 +32,7 @@ export default function CadastrarAluno({
   useEffect(() => {
     const getProfessores = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/getProfessoresSelect');
+        const response = await axios.get('http://localhost:8080/professor/getProfessoresSelect');
         setProfessoresOptions(response.data);
       } catch (error) {
         console.error(error);

@@ -78,7 +78,7 @@ export default function EditarSecretario({
         turno,
       };
 
-      await axios.patch(`http://localhost:8080/auth/attSecretario/${id}`, dadosAtualizados);
+      await axios.patch(`http://localhost:8080/secretario/attSecretario/${id}`, dadosAtualizados);
       onOpen();
     } catch (error) {
       setErro(true);

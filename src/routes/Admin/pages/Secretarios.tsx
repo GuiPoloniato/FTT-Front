@@ -28,7 +28,7 @@ const Secretarios: FC<SecretariosProps> = ({ user, activeTab }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get<SecretarioSignUpData[]>("http://localhost:8080/auth/getSecretarios");
+        const res = await axios.get<SecretarioSignUpData[]>("http://localhost:8080/secretario/getSecretarios");
         setOriginalResult(res.data);
         setResult(res.data);
       } catch (error) {

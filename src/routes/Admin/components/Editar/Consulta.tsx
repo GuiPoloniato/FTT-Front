@@ -59,7 +59,7 @@ export default function EditarConsulta({
         tipoDeConsulta: tipoConsulta,
       };
 
-      await axios.patch(`http://localhost:8080/auth/attConsulta/${id}`, dadosAtualizados);
+      await axios.patch(`http://localhost:8080/consulta/attConsulta/${id}`, dadosAtualizados);
       onOpen();
     } catch (error) {
       setErro(true);

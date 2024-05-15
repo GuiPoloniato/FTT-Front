@@ -77,7 +77,7 @@ export default function EditarProfessor({
         email,
       };
 
-      await axios.patch(`http://localhost:8080/auth/attProfessor/${id}`, dadosAtualizados);
+      await axios.patch(`http://localhost:8080/professor/attProfessor/${id}`, dadosAtualizados);
       onOpen();
     } catch (error) {
       setErro(true);

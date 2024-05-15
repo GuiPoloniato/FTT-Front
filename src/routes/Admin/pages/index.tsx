@@ -3,7 +3,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import { useAuth, withAuth } from "../../../contexts/AuthContext";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
-import { Secretarios, Alunos, Professores, Pacientes, Agenda} from "./screens";
+import { Secretarios, Alunos, Professores, Pacientes, Agenda, Relatorio} from "./screens";
 import { useMediaQuery } from "../../../utils/useMediaQuery";
 
 function Dashboard() {
@@ -29,6 +29,9 @@ function Dashboard() {
           <Professores user={user} activeTab={activeTab} />
         )}
         {activeTab === "Pacientes" && <Pacientes user={user} activeTab={activeTab}/> }
+        {activeTab === "Relatórios" && (
+        <Relatorio user={user} activeTab={activeTab}/> 
+        )}
       </Flex>
     </Flex>
   );

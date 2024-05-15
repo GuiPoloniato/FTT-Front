@@ -143,7 +143,7 @@ export default function EditarPaciente({
         alunoUnieva,
         funcionarioUnieva,
       };
-      await axios.patch(`http://localhost:8080/auth/attPaciente/${id}`, dadosAtualizados);
+      await axios.patch(`http://localhost:8080/paciente/attPaciente/${id}`, dadosAtualizados);
       onOpen();
     } catch (error) {
       setErro(true);

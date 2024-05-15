@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { IoMdPersonAdd } from "react-icons/io";
+import { SlNote } from "react-icons/sl";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Table from "../../../components/Tables";
@@ -9,32 +9,29 @@ import { useMediaQuery } from "../../../utils/useMediaQuery";
 import { removeAcentos } from "../../../utils/removeAcentos";
 import Cadastrar from "../components/Cadastrar";
 import Editar from "../components/Editar";
-import { AlunoSignUpData } from "../../../utils/types";
 import Filter from "../../../components/Filter";
+import { BiFontSize } from "react-icons/bi";
+import { ProfessorSignUpData } from "../../../utils/types";
 
-export default function Alunos({
-  user,
-  activeTab,
-}: {
-  user: AlunoSignUpData;
-  activeTab?: string;
-}) {
+export default function Relatorio(
+
+){
   const { mobile } = useMediaQuery();
 
   const [cadastrarOpened, setCadastrarOpened] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [originalData, setOriginalData] = useState<AlunoSignUpData[]>([]);
-  const [result, setResult] = useState<AlunoSignUpData[]>([]);
+  const [originalData, setOriginalData] = useState<ProfessorSignUpData[]>([]);
+  const [result, setResult] = useState<ProfessorSignUpData[]>([]);
   const [isEditing, setIsEditing] = useState<any>();
   const shouldFetchData = useRef<boolean>(true);
 
-  async function getUsers(): Promise<AlunoSignUpData[]> {
+  async function getUsers(): Promise<ProfessorSignUpData[]> {
     try {
-      const res = await axios.get<AlunoSignUpData[]>("http://localhost:8080/aluno/getAlunos");
+      const res = await axios.get<ProfessorSignUpData[]>("http://localhost:8080/paciente/getPacientes");
       const data = res.data;
       return data;
     } catch (error) {
-      console.error("Erro ao obter os Alunos:", error);
+      console.error("Erro ao obter os Pacientes:", error);
       return [];
     }
   }
@@ -52,10 +49,10 @@ export default function Alunos({
     fetchData();
   }, [shouldFetchData]);
 
-  function pesquisar(searchTerm: string, users: AlunoSignUpData[]): AlunoSignUpData[] {
+  function pesquisar(searchTerm: string, data: ProfessorSignUpData[]): ProfessorSignUpData[] {
     const lowerCaseSearchTerm = removeAcentos(searchTerm.toLowerCase()).trim();
 
-    return users.filter((user: AlunoSignUpData) => {
+    return data.filter((user) => {
       const lowerCaseNome = removeAcentos(user.nome.toLowerCase());
       return lowerCaseNome.includes(lowerCaseSearchTerm);
     });
@@ -82,57 +79,36 @@ export default function Alunos({
         flexDirection: "column",
       }}
     >
-      <Text color="#333" fontSize="2rem" mr="4">
-        Alunos
-      </Text>
-      {mobile && (
-        <Button
-          icon={IoMdPersonAdd}
-          px={6}
-          mt={2}
-          onPress={() => {
-            setCadastrarOpened(true);
-          }}
-          label="Novo cadastro"
-        />
-      )}
-      <Flex mt="4" align="center" w="100%" justify="space-between">
-        {!mobile && (
-          <Button
-            icon={IoMdPersonAdd}
-            px={6}
-            mt={0.1}
-            onPress={() => {
-              setCadastrarOpened(true);
-            }}
-            label="Novo cadastro"
-          />
-        )}
-        <Flex align="center" w={mobile ? "100%" : "auto"}>
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          <Flex w={4} />
-          <Filter />
-        </Flex>
-      </Flex>
+    <Text color="#333" fontSize="2rem" mr="4">
+      Relatório
+    </Text>
+    <Flex justifyContent={"flex-end"} align="center" w={mobile ? "100%" : "auto"}>
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <Flex w={4} />
+        <Filter />
+    </Flex>
       <Flex mt="4" w="100%">
-        <Table
-          headers={["Nome", "Email", "CPF", "Período"]}
+      <Table
+        headers={["Nome", "Email", "CPF", "Período"]} //lembrar de mudar para Data, Paciente, Aluno, Tratamento -> Apos mudar tem que apagar
           data={result}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
           type="aluno"
         />
       </Flex>
-      <Cadastrar
-        cadastrarOpened={cadastrarOpened}
-        setCadastrarOpened={setCadastrarOpened}
-      />
-      <Editar
-        role={isEditing?.role}
-        editData={isEditing}
-        editarOpened={isEditing ? true : false}
-        setEditarOpened={setIsEditing}
-      />
-    </Flex>
+    <Cadastrar
+      cadastrarOpened={cadastrarOpened}
+      setCadastrarOpened={setCadastrarOpened}
+    />
+    {/* <Editar
+      role={isEditing?.role}
+      editData={isEditing}
+      editarOpened={isEditing ? true : false}
+      setEditarOpened={setIsEditing}
+    /> */}
+    </Flex> 
   );
 }
+
+
+  

@@ -52,7 +52,7 @@ export default function CadastrarConsulta({
     useEffect(() => {
         const getPacientes = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/getPacientesSelect`);
+                const response = await axios.get(`http://localhost:8080/paciente/getPacientesSelect`);
                 setPacientesOptions(response.data);
             } catch (error) {
                 toast({
@@ -122,7 +122,7 @@ export default function CadastrarConsulta({
                 const consultaRecorrenteID = mongoObjectId();
                 console.log("Cheguei aqui no for")
                 for (const occurrence of occurrences) {
-                    const res = await axios.post('http://localhost:8080/auth/registrarConsulta', {
+                    const res = await axios.post('http://localhost:8080/consulta/registrarConsulta', {
                         alunoID: user.id,
                         title: tipoDeTratamento,
                         start: occurrence.start.toISOString(),
